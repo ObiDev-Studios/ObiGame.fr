@@ -1,28 +1,26 @@
 from flask import Flask, render_template, request, jsonify
 import requests
+import os
 
 app = Flask(__name__)
 
-# Route principale
+RAWG_API_KEY = os.environ.get("Samouneji")
+
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# Route ping (pour UptimeRobot - évite la mise en veille)
 @app.route('/ping')
 def ping():
     return "pong", 200
 
-# Route recherche de jeux
 @app.route('/search')
 def search():
     query = request.args.get('q', '')
     if not query:
         return jsonify([])
     
-    # Exemple avec l'API RAWG (gratuite)
-    API_KEY = "TON_API_KEY_RAWG"
-    url = f"https://api.rawg.io/api/games?key={API_KEY}&search={query}&page_size=10"
+    url = f"https://api.rawg.io/api/games?key={RAWG_API_KEY}&search={query}&page_size=10"
     
     response = requests.get(url)
     data = response.json()

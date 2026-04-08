@@ -47,8 +47,11 @@
       --font-body: 'Satoshi', 'Inter', sans-serif;
       --font-display: 'Satoshi', 'Inter', sans-serif;
     }
+
     * { box-sizing: border-box; }
+
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       min-height: 100vh;
@@ -63,6 +66,7 @@
         var(--color-bg);
       overflow-x: hidden;
     }
+
     body::before {
       content: "";
       position: fixed;
@@ -75,58 +79,386 @@
       mask-image: radial-gradient(circle at center, black 38%, transparent 82%);
       opacity: 0.34;
     }
+
     a { color: inherit; text-decoration: none; }
     button, input { font: inherit; }
-    .container { width: min(1160px, calc(100% - 2rem)); margin-inline: auto; }
-    .site-header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(18px); background: rgba(10, 8, 17, 0.68); border-bottom: 1px solid rgba(255,255,255,0.04); }
-    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
-    .brand { display: inline-flex; align-items: center; gap: 0.9rem; font-weight: 800; letter-spacing: -0.03em; }
-    .brand-mark { width: 44px; height: 44px; border-radius: 15px; display: grid; place-items: center; background: linear-gradient(135deg, #c4b5fd, #8b5cf6); color: #140d23; box-shadow: 0 12px 30px rgba(139, 92, 246, 0.34); font-weight: 900; }
-    .nav-meta { display: flex; align-items: center; gap: 0.75rem; color: var(--color-text-muted); font-size: var(--text-sm); }
-    .status-dot { width: 0.55rem; height: 0.55rem; border-radius: 999px; background: var(--color-primary); box-shadow: 0 0 0 6px rgba(167, 139, 250, 0.12); }
-    .hero { padding: clamp(4rem, 8vw, 7rem) 0 var(--space-20); position: relative; }
-    .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: var(--space-16); align-items: center; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.55rem 0.95rem; border-radius: var(--radius-full); border: 1px solid var(--color-border); background: var(--color-primary-soft); color: #d7cbff; font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
-    h1 { margin: 1.25rem 0 1rem; font-family: var(--font-display); font-size: var(--text-2xl); line-height: 0.94; letter-spacing: -0.06em; max-width: 10ch; }
-    .hero-copy { max-width: 58ch; color: var(--color-text-muted); margin: 0 0 2rem; font-size: var(--text-lg); }
-    .search-panel { padding: 1rem; border-radius: 28px; background: linear-gradient(180deg, rgba(20, 17, 30, 0.92), rgba(17, 14, 26, 0.92)); border: 1px solid var(--color-border); box-shadow: var(--shadow-lg); }
-    .search-top { display: grid; grid-template-columns: 1fr auto; gap: 0.9rem; margin-bottom: 0.95rem; }
-    .search-input { min-height: 64px; width: 100%; border-radius: 20px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.035); color: var(--color-text); padding: 0 1.15rem; outline: none; transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease; }
-    .search-input::placeholder { color: var(--color-text-faint); }
-    .search-input:focus { border-color: rgba(167, 139, 250, 0.5); box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.14); background: rgba(255,255,255,0.05); }
-    .search-button { min-height: 64px; border: 0; border-radius: 20px; padding: 0 1.35rem; background: linear-gradient(135deg, #c4b5fd, #8b5cf6); color: #130d22; font-weight: 800; letter-spacing: -0.02em; cursor: pointer; transition: transform 180ms ease, box-shadow 180ms ease; box-shadow: 0 12px 28px rgba(139, 92, 246, 0.28); }
-    .search-button:hover { transform: translateY(-1px); box-shadow: 0 18px 36px rgba(139, 92, 246, 0.34); }
-    .filters { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-    .chip { min-height: 46px; padding: 0.75rem 1rem; border-radius: var(--radius-full); border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); color: var(--color-text-muted); font-weight: 700; cursor: pointer; transition: 180ms ease; }
-    .chip.active, .chip:hover { color: var(--color-text); background: rgba(167, 139, 250, 0.16); border-color: rgba(167, 139, 250, 0.34); box-shadow: inset 0 0 0 1px rgba(196, 181, 253, 0.08); }
-    .hero-note { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; color: var(--color-text-faint); font-size: var(--text-sm); }
-    .preview { position: relative; }
-    .preview-card { position: relative; padding: 1.2rem; border-radius: 30px; background: linear-gradient(180deg, rgba(23, 18, 34, 0.96), rgba(16, 13, 24, 0.96)); border: 1px solid rgba(167, 139, 250, 0.14); box-shadow: var(--shadow-lg); overflow: hidden; }
-    .preview-card::before { content: ""; position: absolute; inset: -20% 20% auto -20%; height: 180px; background: radial-gradient(circle, var(--color-glow), transparent 70%); filter: blur(14px); opacity: 0.9; pointer-events: none; }
-    .preview-top { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; color: var(--color-text-muted); font-size: var(--text-sm); }
-    .badge { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.45rem 0.7rem; border-radius: var(--radius-full); background: rgba(167, 139, 250, 0.12); color: #ddd2ff; border: 1px solid rgba(167, 139, 250, 0.18); }
-    .offer-list { position: relative; display: grid; gap: 0.85rem; }
-    .offer-row { display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: center; padding: 1rem; border-radius: 22px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
-    .offer-row.featured { background: linear-gradient(180deg, rgba(167, 139, 250, 0.13), rgba(255,255,255,0.04)); border-color: rgba(167, 139, 250, 0.28); }
-    .offer-store { font-size: var(--text-sm); font-weight: 800; margin-bottom: 0.18rem; letter-spacing: -0.02em; }
-    .offer-meta { color: var(--color-text-faint); font-size: var(--text-xs); }
-    .offer-price { text-align: right; }
-    .offer-price strong { display: block; font-size: var(--text-lg); letter-spacing: -0.04em; }
-    .offer-price span { color: var(--color-text-faint); font-size: var(--text-xs); }
-    .empty-state { padding: 1.25rem; border-radius: 22px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); color: var(--color-text-muted); }
-    .subsection { padding-bottom: var(--space-20); }
-    .mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-    .mini-card { padding: 1.2rem; border-radius: 24px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); box-shadow: var(--shadow-md); }
-    .mini-card strong { display: block; margin-bottom: 0.35rem; font-size: var(--text-sm); letter-spacing: -0.02em; }
-    .mini-card span { color: var(--color-text-muted); font-size: var(--text-sm); }
-    .site-footer { padding: 1rem 0 2rem; color: var(--color-text-faint); font-size: var(--text-sm); }
-    @media (max-width: 980px) { .hero-grid, .mini-grid { grid-template-columns: 1fr; } }
+
+    .container {
+      width: min(1160px, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(10, 8, 17, 0.68);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.9rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #c4b5fd, #8b5cf6);
+      color: #140d23;
+      box-shadow: 0 12px 30px rgba(139, 92, 246, 0.34);
+      font-weight: 900;
+    }
+
+    .nav-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+
+    .status-dot {
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 999px;
+      background: var(--color-primary);
+      box-shadow: 0 0 0 6px rgba(167, 139, 250, 0.12);
+    }
+
+    .hero {
+      padding: clamp(4rem, 8vw, 7rem) 0 var(--space-20);
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-16);
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.55rem 0.95rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      background: var(--color-primary-soft);
+      color: #d7cbff;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      margin: 1.25rem 0 1rem;
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      line-height: 0.94;
+      letter-spacing: -0.06em;
+      max-width: 10ch;
+    }
+
+    .hero-copy {
+      max-width: 58ch;
+      color: var(--color-text-muted);
+      margin: 0 0 2rem;
+      font-size: var(--text-lg);
+    }
+
+    .search-panel {
+      padding: 1rem;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(20, 17, 30, 0.92), rgba(17, 14, 26, 0.92));
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .search-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.9rem;
+      margin-bottom: 0.95rem;
+    }
+
+    .search-input {
+      min-height: 64px;
+      width: 100%;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.035);
+      color: var(--color-text);
+      padding: 0 1.15rem;
+      outline: none;
+      transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .search-input::placeholder {
+      color: var(--color-text-faint);
+    }
+
+    .search-input:focus {
+      border-color: rgba(167, 139, 250, 0.5);
+      box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.14);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .search-button {
+      min-height: 64px;
+      border: 0;
+      border-radius: 20px;
+      padding: 0 1.35rem;
+      background: linear-gradient(135deg, #c4b5fd, #8b5cf6);
+      color: #130d22;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+      box-shadow: 0 12px 28px rgba(139, 92, 246, 0.28);
+    }
+
+    .search-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 36px rgba(139, 92, 246, 0.34);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .chip {
+      min-height: 46px;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      color: var(--color-text-muted);
+      font-weight: 700;
+      cursor: pointer;
+      transition: 180ms ease;
+    }
+
+    .chip.active,
+    .chip:hover {
+      color: var(--color-text);
+      background: rgba(167, 139, 250, 0.16);
+      border-color: rgba(167, 139, 250, 0.34);
+      box-shadow: inset 0 0 0 1px rgba(196, 181, 253, 0.08);
+    }
+
+    .hero-note {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+      color: var(--color-text-faint);
+      font-size: var(--text-sm);
+    }
+
+    .preview {
+      position: relative;
+    }
+
+    .preview-card {
+      position: relative;
+      padding: 1.2rem;
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(23, 18, 34, 0.96), rgba(16, 13, 24, 0.96));
+      border: 1px solid rgba(167, 139, 250, 0.14);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    .preview-card::before {
+      content: "";
+      position: absolute;
+      inset: -20% 20% auto -20%;
+      height: 180px;
+      background: radial-gradient(circle, var(--color-glow), transparent 70%);
+      filter: blur(14px);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .preview-top {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.7rem;
+      border-radius: var(--radius-full);
+      background: rgba(167, 139, 250, 0.12);
+      color: #ddd2ff;
+      border: 1px solid rgba(167, 139, 250, 0.18);
+    }
+
+    .offer-list {
+      position: relative;
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .offer-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      padding: 1rem;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .offer-row.featured {
+      background: linear-gradient(180deg, rgba(167, 139, 250, 0.13), rgba(255,255,255,0.04));
+      border-color: rgba(167, 139, 250, 0.28);
+    }
+
+    .offer-store {
+      font-size: var(--text-sm);
+      font-weight: 800;
+      margin-bottom: 0.18rem;
+      letter-spacing: -0.02em;
+    }
+
+    .offer-meta {
+      color: var(--color-text-faint);
+      font-size: var(--text-xs);
+    }
+
+    .offer-price {
+      text-align: right;
+    }
+
+    .offer-price strong {
+      display: block;
+      font-size: var(--text-lg);
+      letter-spacing: -0.04em;
+    }
+
+    .offer-price span {
+      color: var(--color-text-faint);
+      font-size: var(--text-xs);
+    }
+
+    .offer-link {
+      color: #d7cbff;
+      font-weight: 700;
+    }
+
+    .offer-link:hover {
+      color: #ffffff;
+    }
+
+    .empty-state {
+      padding: 1.25rem;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: var(--color-text-muted);
+    }
+
+    .subsection {
+      padding-bottom: var(--space-20);
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .mini-card {
+      padding: 1.2rem;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: var(--shadow-md);
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: var(--text-sm);
+      letter-spacing: -0.02em;
+    }
+
+    .mini-card span {
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+
+    .site-footer {
+      padding: 1rem 0 2rem;
+      color: var(--color-text-faint);
+      font-size: var(--text-sm);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .mini-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 640px) {
-      .container { width: min(100% - 1rem, 1160px); }
-      .nav-meta { display: none; }
-      .search-top { grid-template-columns: 1fr; }
-      .search-button { width: 100%; }
-      h1 { max-width: 9ch; }
+      .container {
+        width: min(100% - 1rem, 1160px);
+      }
+
+      .nav-meta {
+        display: none;
+      }
+
+      .search-top {
+        grid-template-columns: 1fr;
+      }
+
+      .search-button {
+        width: 100%;
+      }
+
+      h1 {
+        max-width: 9ch;
+      }
+
+      .offer-row {
+        grid-template-columns: 1fr;
+      }
+
+      .offer-price {
+        text-align: left;
+      }
     }
   </style>
 </head>
@@ -203,68 +535,105 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container">ObiGame · Homepage V2 · version fonctionnelle locale</div>
+    <div class="container">ObiGame · Homepage V2 · backend AWS connecté · certains liens peuvent être affiliés</div>
   </footer>
 
   <script>
-    const offers = [
-      { game: 'Elden Ring', platform: 'PC', store: 'Instant Gaming', price: 34.99, label: 'Voir l’offre' },
-      { game: 'Elden Ring', platform: 'PC', store: 'G2A', price: 36.20, label: 'Marketplace' },
-      { game: 'Elden Ring', platform: 'PC', store: 'Eneba', price: 37.40, label: 'Clé numérique' },
-      { game: 'Elden Ring', platform: 'PS5', store: 'Amazon', price: 44.99, label: 'Boîte' },
-      { game: 'Elden Ring', platform: 'Xbox', store: 'Micromania', price: 46.99, label: 'Console' },
-      { game: 'Cyberpunk 2077', platform: 'PC', store: 'Instant Gaming', price: 24.99, label: 'Voir l’offre' },
-      { game: 'Cyberpunk 2077', platform: 'PS5', store: 'Amazon', price: 29.99, label: 'Boîte' },
-      { game: 'Cyberpunk 2077', platform: 'Xbox', store: 'Cdiscount', price: 28.49, label: 'Promo' },
-      { game: 'EA Sports FC 26', platform: 'PC', store: 'Steam', price: 59.99, label: 'Officiel' },
-      { game: 'EA Sports FC 26', platform: 'PS5', store: 'Carrefour', price: 54.99, label: 'Promo' },
-      { game: 'EA Sports FC 26', platform: 'Xbox', store: 'Leclerc', price: 56.99, label: 'Promo' },
-      { game: 'Clair Obscur: Expedition 33', platform: 'PC', store: 'Steam', price: 49.99, label: 'Officiel' },
-      { game: 'Clair Obscur: Expedition 33', platform: 'PS5', store: 'Fnac', price: 52.99, label: 'Précommande' },
-      { game: 'Clair Obscur: Expedition 33', platform: 'Xbox', store: 'Amazon', price: 51.99, label: 'Précommande' }
-    ];
+    const API_URL = "https://dwupadbtxempldt3qcd4rzt3j40ibdll.lambda-url.us-east-1.on.aws/";
 
     const form = document.getElementById('searchForm');
     const input = document.getElementById('searchInput');
     const chips = [...document.querySelectorAll('.chip')];
     const offerList = document.getElementById('offerList');
     const badge = document.getElementById('resultBadge');
+    const resultSort = document.getElementById('resultSort');
+
     let selectedPlatform = 'PC';
 
-    function formatPrice(value) {
-      return value.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
+    function normalizePlatform(platform) {
+      if (!platform) return 'PC';
+      const value = platform.toString().toLowerCase();
+      if (value === 'pc') return 'PC';
+      if (value === 'ps5') return 'PS5';
+      if (value === 'xbox') return 'Xbox';
+      return platform;
     }
 
-    function getFilteredOffers() {
-      const query = input.value.trim().toLowerCase();
-      return offers
-        .filter(offer => offer.platform === selectedPlatform)
-        .filter(offer => !query || offer.game.toLowerCase().includes(query))
-        .sort((a, b) => a.price - b.price);
+    function formatPrice(value, currency = 'EUR') {
+      return Number(value).toLocaleString('fr-FR', {
+        style: 'currency',
+        currency
+      });
     }
 
-    function renderOffers() {
-      const filtered = getFilteredOffers();
-      const query = input.value.trim();
+    function renderEmpty(message) {
+      offerList.innerHTML = `<div class="empty-state">${message}</div>`;
+    }
+
+    function renderOffers(offers = [], query = '') {
       badge.textContent = query ? `Résultats pour “${query}”` : 'Top offre du moment';
+      resultSort.textContent = 'Tri : prix croissant';
 
-      if (!filtered.length) {
-        offerList.innerHTML = `<div class="empty-state">Aucun résultat pour cette recherche sur ${selectedPlatform}.</div>`;
+      if (!offers.length) {
+        renderEmpty(`Aucun résultat pour cette recherche sur ${selectedPlatform}.`);
         return;
       }
 
-      offerList.innerHTML = filtered.map((offer, index) => `
+      offerList.innerHTML = offers.map((offer, index) => `
         <article class="offer-row ${index === 0 ? 'featured' : ''}">
           <div>
-            <div class="offer-store">${offer.store}</div>
-            <div class="offer-meta">${offer.game} · ${offer.platform}</div>
+            <div class="offer-store">${offer.merchant || 'Boutique inconnue'}</div>
+            <div class="offer-meta">${offer.title || 'Jeu inconnu'} · ${normalizePlatform(offer.platform || selectedPlatform)}</div>
           </div>
           <div class="offer-price">
-            <strong>${formatPrice(offer.price)}</strong>
-            <span>${offer.label}</span>
+            <strong>${formatPrice(offer.price, offer.currency || 'EUR')}</strong>
+            <span>
+              <a class="offer-link" href="${offer.affiliate_url || '#'}" target="_blank" rel="noopener noreferrer">Voir l’offre</a>
+            </span>
           </div>
         </article>
       `).join('');
+    }
+
+    function renderLoading() {
+      badge.textContent = 'Recherche en cours...';
+      resultSort.textContent = 'Connexion au backend AWS';
+      renderEmpty('Chargement des offres...');
+    }
+
+    function renderError() {
+      badge.textContent = 'Erreur de chargement';
+      resultSort.textContent = 'Backend indisponible';
+      renderEmpty('Impossible de récupérer les offres pour le moment.');
+    }
+
+    async function searchOffers() {
+      const query = input.value.trim();
+
+      if (!query) {
+        badge.textContent = 'Top offre du moment';
+        resultSort.textContent = 'Tri : prix croissant';
+        renderEmpty('Entre le nom d’un jeu pour lancer la recherche.');
+        return;
+      }
+
+      renderLoading();
+
+      try {
+        const url = `${API_URL}?q=${encodeURIComponent(query)}&platform=${encodeURIComponent(selectedPlatform)}`;
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+        const offers = Array.isArray(data.offers) ? data.offers : [];
+        renderOffers(offers, query);
+      } catch (error) {
+        console.error('Erreur API ObiGame :', error);
+        renderError();
+      }
     }
 
     chips.forEach(chip => {
@@ -272,17 +641,23 @@
         selectedPlatform = chip.dataset.platform;
         chips.forEach(btn => btn.classList.remove('active'));
         chip.classList.add('active');
-        renderOffers();
+
+        if (input.value.trim()) {
+          searchOffers();
+        } else {
+          badge.textContent = 'Top offre du moment';
+          resultSort.textContent = 'Tri : prix croissant';
+          renderEmpty('Entre le nom d’un jeu pour lancer la recherche.');
+        }
       });
     });
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-      renderOffers();
+      searchOffers();
     });
 
-    input.addEventListener('input', renderOffers);
-    renderOffers();
+    renderEmpty('Entre le nom d’un jeu pour lancer la recherche.');
   </script>
 </body>
 </html>
